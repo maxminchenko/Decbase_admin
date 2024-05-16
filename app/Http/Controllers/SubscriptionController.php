@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Subscription;
 use App\Http\Requests\StoreSubscriptionRequest;
-use App\Http\Requests\UpdateSubscriptionRequest;
-
 class SubscriptionController extends Controller
 {
 
@@ -14,7 +12,8 @@ class SubscriptionController extends Controller
      */
     public function store(StoreSubscriptionRequest $request): \Illuminate\Http\JsonResponse
     {
-        $subscription = Subscription::create($request->validated());
+        $validated = $request->validated();
+        $subscription = Subscription::create($validated);
         return response()->json($subscription, 201);
     }
 }
